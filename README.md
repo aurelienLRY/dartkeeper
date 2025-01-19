@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DartKeeper 🎯
 
-## Getting Started
+Application web pour gérer les scores de parties de fléchettes.
 
-First, run the development server:
+## Fonctionnalités
+
+- 🎮 Plusieurs modes de jeu (301, 501, 701, Around the Clock)
+- 👥 Gestion des joueurs avec avatars personnalisés
+- 📊 Statistiques des joueurs (parties jouées, victoires, meilleurs scores)
+- 💾 Sauvegarde automatique des parties
+- 🌓 Mode sombre/clair
+- 🎨 Interface moderne et responsive
+
+## Technologies utilisées
+
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- DiceBear API (avatars)
+
+## Installation
 
 ```bash
+# Cloner le projet
+git clone https://github.com/votre-username/dartkeeper.git
+
+# Installer les dépendances
+cd dartkeeper
+npm install
+
+# Lancer en développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Construire pour la production
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Utilisation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Créer une nouvelle partie ou continuer une partie sauvegardée
+2. Sélectionner le mode de jeu
+3. Ajouter/sélectionner les joueurs
+4. Jouer !
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure du projet
 
-## Learn More
+```
+src/
+  ├── app/              # Pages de l'application
+  ├── components/       # Composants réutilisables
+  ├── hooks/           # Hooks personnalisés
+  ├── styles/          # Styles globaux et thème
+  └── types/           # Types TypeScript
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Contribution
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou une pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Licence
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
