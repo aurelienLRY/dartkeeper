@@ -1,6 +1,5 @@
 "use client";
 
-import { ThemeToggle } from "@/components/theme-toggle";
 import { GameTypeSelector } from "@/components/game/GameTypeSelector";
 import { SavedGames } from "@/components/saved-games";
 import { PlayerSelector } from "@/components/player-selector";
@@ -15,18 +14,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen p-8 bg-muted font-sans">
-      <ThemeToggle />
-      <h1 className="text-4xl font-heading mb-8 text-center text-primary tracking-tight">
-        DartKeeper
-      </h1>
-
       <div className="max-w-2xl mx-auto space-y-8">
         {step === "initial" && (
           <div className="space-y-8">
-            <SavedGames
-              games={gameState.savedGames}
-              onContinue={actions.continueGame}
-            />
             <div className="flex justify-center">
               <button
                 onClick={actions.startNewGame}
@@ -35,6 +25,10 @@ export default function Home() {
                 Nouvelle Partie
               </button>
             </div>
+            <SavedGames
+              games={gameState.savedGames}
+              onContinue={actions.continueGame}
+            />
           </div>
         )}
 
@@ -85,7 +79,6 @@ export default function Home() {
               onUpdateScore={actions.updateScore}
               onExitGame={actions.exitGame}
               onAbandonGame={actions.abandonGame}
-              isCurrentPlayer={actions.isCurrentPlayer}
             />
           </div>
         )}
