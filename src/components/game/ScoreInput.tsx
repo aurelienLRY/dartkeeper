@@ -12,7 +12,7 @@ type InputMode = "dartboard" | "keypad";
 type Dart = { score: number; multiplier: number } | null;
 
 export function ScoreInput({ onUpdateScore }: ScoreInputProps) {
-  const [mode, setMode] = useState<InputMode>("dartboard");
+  const [mode, setMode] = useState<InputMode>("keypad");
   const [darts, setDarts] = useState<[Dart, Dart, Dart]>([null, null, null]);
   const [selectedMultiplier, setSelectedMultiplier] = useState<1 | 2 | 3>(1);
   const currentDartIndex = darts.findIndex((dart) => dart === null);
@@ -63,7 +63,7 @@ export function ScoreInput({ onUpdateScore }: ScoreInputProps) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 mb-4">
       {/* Sélecteur de mode */}
       <div className="flex gap-2 p-2 bg-muted rounded-lg">
         <button
@@ -89,7 +89,7 @@ export function ScoreInput({ onUpdateScore }: ScoreInputProps) {
       </div>
 
       {/* Affichage des fléchettes */}
-      <div className="flex justify-between items-center p-4 bg-card rounded-lg">
+      <div className="flex justify-between items-center  bg-card rounded-lg">
         <div className="flex gap-2">
           {darts.map((dart, index) => (
             <div
@@ -139,7 +139,7 @@ export function ScoreInput({ onUpdateScore }: ScoreInputProps) {
           <DartBoard onScore={handleDartScore} />
           <button
             onClick={handleMissedDart}
-            className="w-full p-4 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/90 text-lg font-medium"
+            className="w-full p-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/90 text-lg font-medium"
             disabled={currentDartIndex === -1}
           >
             Raté
@@ -170,12 +170,12 @@ export function ScoreInput({ onUpdateScore }: ScoreInputProps) {
           </div>
 
           {/* Points rapides */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-4 gap-3">
             {QUICK_POINTS.map((points) => (
               <button
                 key={points}
                 onClick={() => handleKeypadScore(points)}
-                className="p-4 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 text-2xl font-heading"
+                className="p-2 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 text-xl font-heading"
                 disabled={currentDartIndex === -1}
               >
                 {selectedMultiplier > 1
@@ -183,32 +183,16 @@ export function ScoreInput({ onUpdateScore }: ScoreInputProps) {
                   : points}
               </button>
             ))}
-          </div>
 
-          {/* Pavé numérique */}
-          <div className="grid grid-cols-3 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
-              <button
-                key={number}
-                onClick={() => handleKeypadScore(number)}
-                className="p-4 bg-muted text-card-foreground rounded-lg hover:bg-muted/90 text-2xl font-heading"
-                disabled={currentDartIndex === -1}
-              >
-                {selectedMultiplier > 1
-                  ? `${number}×${selectedMultiplier}`
-                  : number}
-              </button>
-            ))}
+            {/* Bouton Raté */}
+            <button
+              onClick={handleMissedDart}
+              className="w-full p-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/90 text-lg font-medium"
+              disabled={currentDartIndex === -1}
+            >
+              Raté
+            </button>
           </div>
-
-          {/* Bouton Raté */}
-          <button
-            onClick={handleMissedDart}
-            className="w-full p-4 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/90 text-lg font-medium"
-            disabled={currentDartIndex === -1}
-          >
-            Raté
-          </button>
         </div>
       )}
     </div>

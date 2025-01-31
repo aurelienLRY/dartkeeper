@@ -3,7 +3,6 @@ import Image from "next/image";
 export function Header() {
   return (
     <header className="flex justify-between items-center p-4">
-      <ThemeToggle />
       <div className="flex items-center gap-2">
         <Image
           src="/DartKeeper_Logo_dartkeeper.svg"
@@ -16,6 +15,7 @@ export function Header() {
           DartKeeper
         </h1>
       </div>
+      <ThemeToggle />
     </header>
   );
 }

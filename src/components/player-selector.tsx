@@ -4,6 +4,7 @@ import { useState } from "react";
 import { RegisteredPlayer, Player } from "@/types/game";
 import PlayerInput from "./PlayerInput";
 import { Modal } from "./ui/Modal";
+import Image from "next/image";
 
 interface PlayerSelectorProps {
   registeredPlayers: RegisteredPlayer[];
@@ -69,10 +70,12 @@ export function PlayerSelector({
                   className="flex items-center justify-between p-2 bg-muted rounded text-card-foreground group"
                 >
                   <div className="flex items-center gap-2">
-                    <img
-                      src={registeredPlayer?.avatar}
+                    <Image
+                      src={registeredPlayer?.avatar || ""}
                       alt={`Avatar de ${player.name}`}
                       className="w-8 h-8 rounded-full bg-background"
+                      width={32}
+                      height={32}
                     />
                     <span>{player.name}</span>
                   </div>
@@ -119,10 +122,12 @@ export function PlayerSelector({
                 disabled={selected}
                 className="w-full text-left flex gap-3 items-center"
               >
-                <img
+                <Image
                   src={player.avatar}
                   alt={`Avatar de ${player.name}`}
                   className="w-10 h-10 rounded-full bg-background"
+                  width={40}
+                  height={40}
                 />
                 <div>
                   <div className="font-medium text-card-foreground">

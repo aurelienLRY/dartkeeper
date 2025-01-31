@@ -1,6 +1,7 @@
 "use client";
 
 import { Game } from "@/types/game";
+import { motion } from "framer-motion";
 
 interface SavedGamesProps {
   games: Game[];
@@ -13,17 +14,42 @@ export function SavedGames({ games, onContinue }: SavedGamesProps) {
   }
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-heading text-card-foreground">
+    <motion.div
+      className="space-y-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.h2
+        className="text-2xl font-heading text-card-foreground text-center"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2, duration: 0.3 }}
+      >
         Historique des parties
-      </h2>
-      <div className="grid grid-cols-1 gap-4">
-        {games.map((game) => {
+      </motion.h2>
+      <div className="grid grid-cols-1 gap-4 px-2">
+        {games.map((game, index) => {
           const winner = game.players.find((p) => p.id === game.winner);
           return (
-            <div
+            <motion.div
               key={game.id}
-              className="p-4 bg-card border border-border rounded-lg text-left shadow-md shadow-primary/30 "
+              className="p-4 bg-card border border-border rounded-lg text-left shadow-md shadow-primary/30"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100,
+              }}
+              whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.2 },
+              }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className="flex justify-between items-start mb-2">
                 <div>
@@ -50,7 +76,9 @@ export function SavedGames({ games, onContinue }: SavedGamesProps) {
                 <div className="flex items-center gap-2 text-sm">
                   <span
                     className={`inline-block w-2 h-2 rounded-full ${
-                      game.isFinished ? "bg-accent" : "bg-primary animate-pulse"
+                      game.isFinished
+                        ? "bg-green-600"
+                        : "bg-orange-600 animate-pulse"
                     }`}
                   />
                   <span className="text-card-foreground">
@@ -67,10 +95,10 @@ export function SavedGames({ games, onContinue }: SavedGamesProps) {
                   Joueurs : {game.players.map((p) => p.name).join(", ")}
                 </p>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }

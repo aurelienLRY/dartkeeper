@@ -29,8 +29,7 @@ export function GameBoard({
   );
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Partie gauche : joueurs */}
+    <div className="flex flex-col gap-6 min-h-screen">
       <div className="space-y-6">
         <div className="flex justify-between items-start">
           <div>
@@ -47,16 +46,16 @@ export function GameBoard({
               })}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1">
             <button
               onClick={onExitGame}
-              className="px-3 py-1 text-sm text-muted-foreground hover:text-card-foreground"
+              className="px-3 py-1 text-sm text-muted-foreground hover:text-card-foreground bg-card border border-border rounded-lg"
             >
               Quitter
             </button>
             <button
               onClick={onAbandonGame}
-              className="px-3 py-1 text-sm text-destructive hover:text-destructive/90"
+              className="px-3 py-1 text-sm text-destructive hover:text-white hover:bg-destructive/90 bg-card border border-destructive/90 rounded-lg transition-colors duration-300"
             >
               Abandonner
             </button>
